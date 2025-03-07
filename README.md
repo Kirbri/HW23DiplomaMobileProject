@@ -86,29 +86,24 @@ ____
 ____
 
 <a id="jenkins"></a>
-## <a name="Сборка в Jenkins"> Сборка в [Jenkins](https://jenkins.autotests.cloud/job/009-Kornilova_Ann_qa_guru-java_23/) </a>
+## <a name="Сборка в Jenkins"> Сборка в [Jenkins](https://jenkins.autotests.cloud/job/010-Kornilova_Ann_qa_guru-java_23/) </a>
 
 Для запуска сборки необходимо перейти в раздел Build with Parameters и нажать кнопку Build
 
 <p align="center">  
-<a href="https://jenkins.autotests.cloud/job/009-Kornilova_Ann_qa_guru-java_23/"><img src="src\test\resources\images\screenshot\Jenkins_1.png" alt="Jenkins" width="950"/></a>  
+<a href="https://jenkins.autotests.cloud/job/010-Kornilova_Ann_qa_guru-java_23/"><img src="src/test/resources/images/screenshot/Jenkins_1.png" alt="Jenkins" width="950"/></a>  
 </p>
 
 <a id="jenkins_parameters"></a>
 ### <a name="Параметры сборки в Jenkins"> Параметры сборки в Jenkins </a>
 
 - **REPOSITORY** - репозиторий источник данных для запуска тестов
-- **TASK** - выбор группы тестов 
-- **BROWSER** - название браузера для запуска тестов
-- **BROWSER_VERSION** версия браузера
-- **SCREEN_RESOLUTION** - размер окна браузера
-- **ENVIRONMENT** - окружение развёртывания ПО
-- **REMOTE_URL** - адрес сервера, который позволит проводить UI-тестирование
-- **REMOTE_USER REMOTE_PASSWORD** - учётные данные для подключения к удалённому серверу
-- **COMMENT** - комментарий для сборки
+- **TASK** - выбор группы тестов
+- **USER_NAME ACCESS_KEY** - учётные данные от платформы browserstack
+- **DEVICE_NAME** - модель телефона
 
 <p align="center">  
-<a href="https://jenkins.autotests.cloud/job/005-Kornilova_Ann_qa_guru-java_14_jenkins/build?delay=0sec"><img src="src\test\resources\images\screenshot\Jenkins_2.png" alt="Jenkins" width="950"/></a>  
+<a href="https://jenkins.autotests.cloud/job/010-Kornilova_Ann_qa_guru-java_23/build?delay=0sec"><img src="src/test/resources/images/screenshot/Jenkins_2.png" alt="Jenkins" width="950"/></a>  
 </p>
 
 <a href="#table_of_contents">Наверх</a>
@@ -120,28 +115,35 @@ _____
 
 > [!NOTE]
 > 
-> Для локального запуска необходимо установить: 
+> **[Иструкция](https://autotest.how/appium-setup-for-local-android-tutorial-md) по настройке и запуску** 
+> 
+> Для локального запуска необходимо установить:
 > - [Java](https://github.com/qa-guru/knowledge-base/wiki/%D0%98%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B:-Java), 
 > - [Gradle](https://github.com/qa-guru/knowledge-base/wiki/%D0%98%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B:-Gradle), 
-> - Cреда разработки, например, [IntelliJ IDEA](https://github.com/qa-guru/knowledge-base/wiki/%D0%98%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B:-IntelliJ-IDEA) 
-> - Браузер [Google Chrome](https://www.google.com/intl/ru_ru/chrome/)
+> - Cреда разработки, например, [IntelliJ IDEA](https://github.com/qa-guru/knowledge-base/wiki/%D0%98%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B:-IntelliJ-IDEA)
+> - [Android studio](https://developer.android.com/studio)
+> - [node.js](https://nodejs.org/en/download)
+> - [npm](https://www.npmjs.com/)
+> - [Appium Server](https://github.com/appium/appium)
+> - Драйвер [UiAutomator2](https://appium.io/docs/en/2.1/quickstart/uiauto2-driver/)
+> - [Appium Inspector](https://github.com/appium/appium-inspector)
 
 ### Допустимые комбинации
 
 ```mermaid 
 flowchart LR
     A(gradle) --> B(clean)
-    B --> C{Выбрать тег}
-    C --> D[web_login_test]
-    C --> E[web_favorite_test]
-    C --> F[web_search_test]
-    C --> G[web_all_test]
-    D --> H[environment.properties]
-    E --> H[environment.properties]
-    F --> H[environment.properties]
-    G --> H[environment.properties]
-    H --> J[-Denvironment=remote]
-    H --> K[-Denvironment=local]
+    B --> C{Выбрать task}
+    C --> D[android_all_test]
+    C --> E[android_search_test]
+    C --> F[android_announcement_test]
+    D --> G[environment.properties]
+    E --> G[environment.properties]
+    F --> G[environment.properties]
+    G --> H[-DdeviceHost=browserstack]
+    G --> I[-DdeviceHost=emulation]
+    H --> J[-DbrowserstackUser]
+    H --> K[-DbrowserstackKey]
 ```
 
 ### Локально

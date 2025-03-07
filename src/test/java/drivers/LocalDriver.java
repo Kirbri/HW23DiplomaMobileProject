@@ -3,8 +3,10 @@ package drivers;
 import com.codeborne.selenide.WebDriverProvider;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
+import owner.config.EmulationConfig;
 
 import javax.annotation.Nonnull;
 import java.io.File;
@@ -19,6 +21,8 @@ import static org.apache.commons.io.FileUtils.copyInputStreamToFile;
 
 public class LocalDriver implements WebDriverProvider {
 
+    public static final EmulationConfig EMULATION_CONFIG = ConfigFactory.create(EmulationConfig.class, System.getProperties());
+
     @Nonnull
     @Override
     public WebDriver createDriver(@Nonnull Capabilities capabilities) {
@@ -26,21 +30,21 @@ public class LocalDriver implements WebDriverProvider {
 
         options.setAutomationName(ANDROID_UIAUTOMATOR2)
                 .setPlatformName(ANDROID)
-                .setPlatformVersion("15.0")
-                .setDeviceName("Pixel 8a API 35")
+                .setPlatformVersion(EMULATION_CONFIG.getPlatformVersion())
+                .setDeviceName(EMULATION_CONFIG.getDeviceName())
                 .setApp(getAppPath())
-                .setAppPackage("com.avito.android")
-                .setAppActivity("com.avito.android.home.HomeActivity");
+                .setAppPackage(EMULATION_CONFIG.getAppPackage())
+                .setAppActivity(EMULATION_CONFIG.getAppActivity());
         try {
-            return new AndroidDriver(new URL("http://localhost:4723/wd/hub"), options);
+            return new AndroidDriver(new URL(EMULATION_CONFIG.getAppiumServerUrl()), options);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
     }
 
     private String getAppPath() {
-        String appVersion = "avito.apk";
-        String appUrl = "https://www.avito.st/s/app/apk/" + appVersion;
+        String appVersion = EMULATION_CONFIG.getAppVersion();
+        String appUrl = EMULATION_CONFIG.getAppUrl() + appVersion;
         String appPath = "src/test/resources/apps/" + appVersion;
 
         File app = new File(appPath);

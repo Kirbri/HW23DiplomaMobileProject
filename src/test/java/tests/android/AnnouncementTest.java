@@ -1,15 +1,14 @@
-package tests.android.local;
+package tests.android;
 
 import io.qameta.allure.Feature;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import screens.avito.*;
-import tests.TestBase;
+import screens.*;
 
-@Feature("Selenide-appium local Android tests")
-@Tag("local")
-@Tag("localAnnouncementTests")
+@Feature("Mobile Android Announcement tests")
+@Tag("announcementTests")
 public class AnnouncementTest extends TestBase {
     final MainPage mainPage = new MainPage();
     final AnnouncementPage announcementPage = new AnnouncementPage();
@@ -17,21 +16,21 @@ public class AnnouncementTest extends TestBase {
     final ProfilePage profilePage = new ProfilePage();
     final ComplaintPage complaintPage = new ComplaintPage();
 
+    @BeforeEach
+    void beforeEachCloseHintOpenAndCheckFirstTitleAnnouncement() {
+        mainPage.saveFirstAnnouncement()
+                .openFirstAnnouncement();
+    }
+
     @Test
     @DisplayName("Открыть первое объявление и проверить совпадение названий")
     void openFirstAnnouncementAndCheckTitleTest() {
-        mainPage.closeTopHint()
-                .saveFirstAnnouncement()
-                .openFirstAnnouncement();
         announcementPage.checkTitleAnnouncement(MainPage.nameOfAnnouncement);
     }
 
     @Test
     @DisplayName("Открыть первое объявление и позвонить по нему")
     void unsuccessfulCallTheSellerNeedRegistrationTest() {
-        mainPage.closeTopHint()
-                .saveFirstAnnouncement()
-                .openFirstAnnouncement();
         announcementPage.checkTitleAnnouncement(MainPage.nameOfAnnouncement)
                 .callTheSeller();
         popUpNotificationPage.checkFormLoginOrRegister();
@@ -40,21 +39,14 @@ public class AnnouncementTest extends TestBase {
     @Test
     @DisplayName("Открыть первое объявление и написать по нему")
     void unsuccessfulWriteTheSellerNeedRegistrationTest() {
-        mainPage.closeTopHint()
-                .saveFirstAnnouncement()
-                .openFirstAnnouncement();
         announcementPage.checkTitleAnnouncement(MainPage.nameOfAnnouncement)
                 .writeToTheSeller();
         popUpNotificationPage.checkFormLoginOrRegister();
     }
 
     @Test
-//    @Disabled("Не работает scroll")
     @DisplayName("Открыть первое объявление и отправить базовый вопрос продавцу")
     void unsuccessfulAskTheSellerNeedRegistrationTest() {
-        mainPage.closeTopHint()
-                .saveFirstAnnouncement()
-                .openFirstAnnouncement();
         announcementPage.checkTitleAnnouncement(MainPage.nameOfAnnouncement)
                 .sendMessageToSeller();
         popUpNotificationPage.checkFormLoginOrRegister();
@@ -63,9 +55,6 @@ public class AnnouncementTest extends TestBase {
     @Test
     @DisplayName("Открыть первое объявление и перейти к профилю продавца")
     void unsuccessfulGoToSellerProfileTest() {
-        mainPage.closeTopHint()
-                .saveFirstAnnouncement()
-                .openFirstAnnouncement();
         announcementPage.checkTitleAnnouncement(MainPage.nameOfAnnouncement)
                 .saveNameOfSeller()
                 .goToSellerProfile();
@@ -79,9 +68,6 @@ public class AnnouncementTest extends TestBase {
     @Test
     @DisplayName("Открыть первое объявление и подписаться на продавца")
     void unsuccessfulSubscribeToSellerNeedRegistrationTest() {
-        mainPage.closeTopHint()
-                .saveFirstAnnouncement()
-                .openFirstAnnouncement();
         announcementPage.checkTitleAnnouncement(MainPage.nameOfAnnouncement)
                 .subscribeToSeller();
         popUpNotificationPage.checkFormLoginOrRegister();
@@ -90,9 +76,6 @@ public class AnnouncementTest extends TestBase {
     @Test
     @DisplayName("Открыть первое объявление и пожаловаться на него")
     void reportAnnouncementTest() {
-        mainPage.closeTopHint()
-                .saveFirstAnnouncement()
-                .openFirstAnnouncement();
         announcementPage.checkTitleAnnouncement(MainPage.nameOfAnnouncement)
                 .reportAnnouncement();
         complaintPage.reportPage()

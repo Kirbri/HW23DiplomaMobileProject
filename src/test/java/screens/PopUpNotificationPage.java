@@ -1,4 +1,4 @@
-package screens.avito;
+package screens;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;

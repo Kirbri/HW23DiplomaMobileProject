@@ -3,9 +3,8 @@ package owner.config;
 import org.aeonbits.owner.Config;
 
 @Config.Sources({
-        "classpath:properties/browserstack.properties",
+        "classpath:properties/${deviceHost}.properties",
 })
-
 public interface BrowserstackConfig extends Config {
 
     @Key("browserstackUser")
@@ -16,9 +15,6 @@ public interface BrowserstackConfig extends Config {
 
     @Key("deviceName")
     String getDeviceName();
-
-    @Key("platformName")
-    String getPlatformName();
 
     @Key("platformVersion")
     String getPlatformVersion();

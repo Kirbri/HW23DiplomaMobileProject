@@ -44,8 +44,8 @@ dependencies {
 }
 
 tasks.withType(Test) {
-    systemProperties += System.properties
-    systemProperty 'junit.jupiter.extensions.autodetection.enabled', 'true'
+    useJUnitPlatform()
+    systemProperties(System.getProperties())
 
     testLogging {
         lifecycle {
@@ -63,38 +63,20 @@ test {
     useJUnitPlatform()
 }
 
-task androidRemote(type: Test) {
+task android_all_test(type: Test) {
     useJUnitPlatform {
-        includeTags 'browserstack'
+        includeTags ("searchTests", "announcementTests")
     }
 }
 
-task androidRemoteSearch(type: Test) {
+task android_search_test(type: Test) {
     useJUnitPlatform {
-        includeTags 'remoteSearchTests'
+        includeTags ("searchTests")
     }
 }
 
-task androidRemoteAnnouncement(type: Test) {
+task android_announcement_test(type: Test) {
     useJUnitPlatform {
-        includeTags 'remoteAnnouncementTests'
-    }
-}
-
-task androidLocal(type: Test) {
-    useJUnitPlatform {
-        includeTags 'local'
-    }
-}
-
-task androidLocalSearch(type: Test) {
-    useJUnitPlatform {
-        includeTags 'localSearchTests'
-    }
-}
-
-task androidLocalAnnouncement(type: Test) {
-    useJUnitPlatform {
-        includeTags 'localAnnouncementTests'
+        includeTags ("announcementTests")
     }
 }
