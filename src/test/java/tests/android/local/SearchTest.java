@@ -11,7 +11,7 @@ import tests.TestBase;
 
 @Feature("Selenide-appium local Android tests")
 @Tag("local")
-@Tag("searchTests")
+@Tag("localSearchTests")
 public class SearchTest extends TestBase {
     final MainPage mainPage = new MainPage();
     final SearchPage searchPage = new SearchPage();

@@ -9,8 +9,8 @@ import screens.avito.*;
 import tests.TestBase;
 
 @Feature("Selenide-appium remote Android tests")
-@Tag("announcementTests")
 @Tag("browserstack")
+@Tag("remoteAnnouncementTests")
 public class AnnouncementTest extends TestBase {
     final MainPage mainPage = new MainPage();
     final AnnouncementPage announcementPage = new AnnouncementPage();

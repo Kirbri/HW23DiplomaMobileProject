@@ -69,8 +69,32 @@ task androidRemote(type: Test) {
     }
 }
 
+task androidRemoteSearch(type: Test) {
+    useJUnitPlatform {
+        includeTags 'remoteSearchTests'
+    }
+}
+
+task androidRemoteAnnouncement(type: Test) {
+    useJUnitPlatform {
+        includeTags 'remoteAnnouncementTests'
+    }
+}
+
 task androidLocal(type: Test) {
     useJUnitPlatform {
         includeTags 'local'
+    }
+}
+
+task androidLocalSearch(type: Test) {
+    useJUnitPlatform {
+        includeTags 'localSearchTests'
+    }
+}
+
+task androidLocalAnnouncement(type: Test) {
+    useJUnitPlatform {
+        includeTags 'localAnnouncementTests'
     }
 }

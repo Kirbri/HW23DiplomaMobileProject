@@ -9,7 +9,7 @@ import tests.TestBase;
 
 @Feature("Selenide-appium local Android tests")
 @Tag("local")
-@Tag("announcementTests")
+@Tag("localAnnouncementTests")
 public class AnnouncementTest extends TestBase {
     final MainPage mainPage = new MainPage();
     final AnnouncementPage announcementPage = new AnnouncementPage();

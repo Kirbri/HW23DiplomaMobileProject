@@ -10,8 +10,8 @@ import screens.avito.SearchPage;
 import tests.TestBase;
 
 @Feature("Selenide-appium remote Android tests")
-@Tag("searchTests")
 @Tag("browserstack")
+@Tag("remoteSearchTests")
 public class SearchTest extends TestBase {
     final MainPage mainPage = new MainPage();
     final SearchPage searchPage = new SearchPage();
