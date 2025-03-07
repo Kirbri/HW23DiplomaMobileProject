@@ -141,52 +141,50 @@ flowchart LR
     E --> G[environment.properties]
     F --> G[environment.properties]
     G --> H[-DdeviceHost=browserstack]
-    G --> I[-DdeviceHost=emulation]
     H --> J[-DbrowserstackUser]
-    H --> K[-DbrowserstackKey]
+    J --> K[-DbrowserstackKey]
+    G --> I[-DdeviceHost=emulation]
 ```
 
 ### Локально
 
 **Локальный запуск с параметрами по умолчанию**
 
-*Для теста возьмутся параметры из файла resources/properties/local.properties, для изменения параметров необходимо исправить файл*
+*Для теста возьмутся параметры из файла resources/properties/emulation.properties, для изменения параметров необходимо обновить данные в файле*
 ```bash  
-gradle clean {task}
+gradle clean {task} -DdeviceHost=emulation
 ```
 
 **Пример локального запуска с указанием параметров в консоли**
 ```bash  
-gradle clean web_login_test 
--Denvironment=local 
--DbrowserName=firefox 
--DbrowserVersion=135 
--DbrowserWindowSize=2560x1440 
--DbrowserIsRemote=false
+gradle clean android_all_test 
+"-DdeviceName=Pixel 8a API 35" 
+"-DplatformVersion=15.0" 
+"-DappPackage=com.avito.android" 
+"-DappActivity=com.avito.android.home.HomeActivity" 
+"-DappiumServerUrl=http://localhost:4723/wd/hub" 
+"-DappVersion=avito.apk" 
+"-DappUrl=https://www.avito.st/s/app/apk/"
 ```
 
 ### Удалённо
 
 **Пример локального запуска с указанием среды выполнения**
 
-*Тест можно запустить из терминала, а выполнение будет в Selenoid, параметры для запуска - resources/properties/remote.properties, для изменения параметров необходимо исправить файл*
+*Тест можно запустить из терминала, а выполнение будет в Browserstack, параметры для запуска - resources/properties/browserstack.properties, для изменения параметров необходимо обновить данные в файле*
 ```bash  
-gradle clean web_search_test 
--Denvironment=remote
+gradle clean android_search_test 
+-Denvironment=browserstack
 ```
 
 **Пример удалённого запуск через *Jenkins***
 ```bash
 clean
-${TASK} 
--Denvironment=remote 
--DbrowserName=${BROWSER} 
--DbrowserVersion=${BROWSER_VERSION} 
--DbrowserWindowSize=${SCREEN_RESOLUTION} 
--DbrowserIsRemote=true 
--DremoteUrl=${REMOTE_URL} 
--DremoteUser=${REMOTE_USER} 
--DremotePassword=${REMOTE_PASSWORD}
+${TASK}
+-DdeviceHost=browserstack
+-DbrowserstackUser=${USER_NAME}
+-DbrowserstackKey=${ACCESS_KEY}
+-DdeviceName="${DEVICE_NAME}"
 ```
 
 <a href="#table_of_contents">Наверх</a>
@@ -194,7 +192,7 @@ ${TASK}
 _____
 
 <a id="allure"></a>
-## <a name="Allure">Allure [отчет](https://jenkins.autotests.cloud/job/009-Kornilova_Ann_qa_guru-java_23/allure/)</a>
+## <a name="Allure">Allure [отчет](https://jenkins.autotests.cloud/job/010-Kornilova_Ann_qa_guru-java_23/allure/)</a>
 
 ### Основная страница отчёта
 
@@ -213,25 +211,12 @@ _____
 
 </details>>
 
-### Графики
-
-<details>
-
-<summary>Раскройте, для просмотра</summary>
-  <p align="center">  
-<img title="Allure Graphics" src="src/test/resources/images/screenshot/Allure_3.png" width="850">
-
-<img title="Allure Graphics" src="src/test/resources/images/screenshot/Allure_4.png" width="850">  
-</p>
-
-</details>>
-
 <a href="#table_of_contents">Наверх</a>
 
 ___
 
 <a id="allure-testops"></a>
-## <a name="Allure_TestOps">Интеграция с [Allure TestOps](https://allure.autotests.cloud/project/4645/dashboards)</a>
+## <a name="Allure_TestOps">Интеграция с [Allure TestOps](https://allure.autotests.cloud/project/4660/dashboards)</a>
 
 ### Allure TestOps Dashboard
 
@@ -249,7 +234,7 @@ ___
 
 ___
 <a id="jira"></a>
-## <a name="Jira">Интеграция с [Jira](https://jira.autotests.cloud/browse/HOMEWORK-1415)</a>
+## <a name="Jira">Интеграция с [Jira](https://jira.autotests.cloud/browse/HOMEWORK-1417)</a>
 
 <p align="center">  
 <img title="Jira" src="src/test/resources/images/screenshot/Jira_1.png" width="850">  
@@ -279,7 +264,7 @@ ____
 ###  <a name="Mail"> Уведомление на почту </a>
 
 <p align="center">  
-<img title="Allure Overview Dashboard" src="src/test/resources/images/screenshot/Mail_1.png" width="550">  
+<img title="Allure Overview Dashboard" src="src/test/resources/images/screenshot/Mail.png" width="550">  
 </p>
 
 <a href="#table_of_contents">Наверх</a>
@@ -291,7 +276,7 @@ ____
 ##  <a name="Video"> Примеры выполнения тестов </a>
 
 <p align="center">
-<img title="Selenoid Video" src="src/test/resources/images/gif/FavoriteTests_2.gif" width="550" height="350"  alt="video">   
+<img title="Selenoid Video" src="src/test/resources/video/AnnouncementTest.mp4" width="550" height="350"  alt="video">   
 </p>
 
 <details>
@@ -301,36 +286,9 @@ ____
 </p>
 
 <p align="center">
-<img title="Selenoid Video" src="src/test/resources/images/gif/FavoriteTests_3.gif" width="550" height="350"  alt="video">   
+<img title="Selenoid Video" src="src/test/resources/video/SearchTest.mp4" width="550" height="350"  alt="video">   
 </p>
 
-<p align="center">
-<img title="Selenoid Video" src="src/test/resources/images/gif/LoginTest_1.gif" width="550" height="350"  alt="video">   
-</p>
-
-<p align="center">
-<img title="Selenoid Video" src="src/test/resources/images/gif/LoginTest_1.gif" width="550" height="350"  alt="video">   
-</p>
-
-<p align="center">
-<img title="Selenoid Video" src="src/test/resources/images/gif/SearchTests_1.gif" width="550" height="350"  alt="video">   
-</p>
-
-<p align="center">
-<img title="Selenoid Video" src="src/test/resources/images/gif/SearchTests_2.gif" width="550" height="350"  alt="video">   
-</p>
-
-<p align="center">
-<img title="Selenoid Video" src="src/test/resources/images/gif/SearchTests_3.gif" width="550" height="350"  alt="video">   
-</p>
-
-<p align="center">
-<img title="Selenoid Video" src="src/test/resources/images/gif/SearchTests_4.gif" width="550" height="350"  alt="video">   
-</p>
-
-<p align="center">
-<img title="Selenoid Video" src="src/test/resources/images/gif/SearchTests_5.gif" width="550" height="350"  alt="video">   
-</p>
 </details>
 
 <a href="#table_of_contents">Наверх</a>
