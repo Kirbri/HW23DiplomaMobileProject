@@ -140,9 +140,7 @@ flowchart LR
     D --> G[environment.properties]
     E --> G[environment.properties]
     F --> G[environment.properties]
-    G --> H[-DdeviceHost=browserstack]
-    H --> J[-DbrowserstackUser]
-    J --> K[-DbrowserstackKey]
+    G --> H[-DdeviceHost=browserstack -DbrowserstackUser -DbrowserstackKey]
     G --> I[-DdeviceHost=emulation]
 ```
 
@@ -276,17 +274,17 @@ ____
 ##  <a name="Video"> Примеры выполнения тестов </a>
 
 <p align="center">
-<img title="Selenoid Video" src="src/test/resources/video/AnnouncementTest.mp4" width="550" height="350"  alt="video">   
+<img title="Browserstack Video" src="src/test/resources/images/gif/AnnouncementTest.gif" width="550" height="350"  alt="video">   
 </p>
 
 <details>
 <summary>Раскройте, для просмотра</summary>
 <p align="center">
-<img title="Selenoid Video" src="src/test/resources/images/gif/FavoriteTests_2.gif" width="550" height="350"  alt="video">   
+<img title="Local Video" src="src/test/resources/images/gif/SearchTest_local.gif" width="550" height="350"  alt="video">   
 </p>
 
 <p align="center">
-<img title="Selenoid Video" src="src/test/resources/video/SearchTest.mp4" width="550" height="350"  alt="video">   
+<img title="Browserstack Video" src="src/test/resources/images/gif/SearchTest.gif" width="550" height="350"  alt="video">   
 </p>
 
 </details>
