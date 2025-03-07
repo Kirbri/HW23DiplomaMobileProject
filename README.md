@@ -274,17 +274,17 @@ ____
 ##  <a name="Video"> Примеры выполнения тестов </a>
 
 <p align="center">
-<img title="Browserstack Video" src="src/test/resources/images/gif/AnnouncementTest.gif" width="550" height="350"  alt="video">   
+<img title="Browserstack Video" src="src/test/resources/images/gif/AnnouncementTest.gif" width="250" height="550"  alt="video">   
 </p>
 
 <details>
 <summary>Раскройте, для просмотра</summary>
 <p align="center">
-<img title="Local Video" src="src/test/resources/images/gif/SearchTest_local.gif" width="550" height="350"  alt="video">   
+<img title="Local Video" src="src/test/resources/images/gif/SearchTest_local.gif" width="250" height="550"  alt="video">   
 </p>
 
 <p align="center">
-<img title="Browserstack Video" src="src/test/resources/images/gif/SearchTest.gif" width="550" height="350"  alt="video">   
+<img title="Browserstack Video" src="src/test/resources/images/gif/SearchTest.gif" width="250" height="550"  alt="video">   
 </p>
 
 </details>
